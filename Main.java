@@ -7,22 +7,44 @@ public class Main {
 		Scanner s = new Scanner(System.in);
 		RoomManager roomManager = new RoomManager();
 
-		for (int i = 0; i < 100; i++) {
+		while (true) {
 			System.out.println(" -----Chọn chức năng-----");
 			System.out.println("|    1.Tạo phòng         |");
 			System.out.println("|    2.Hiển thị phòng    |");
-			System.out.println("|    3.Phòng còn trống   |");
-			System.out.println("|    4.Thống kê          |");
-			System.out.println("|    5.Thoát             |");
+			System.out.println("|    3.Xem lịch đặt phòng|");
+			System.out.println("|    4.Đặt phòng         |");
+			System.out.println("|    5.Dịch vụ phòng     |");
+			System.out.println("|    6.Thống kê          |");
+			System.out.println("|    7.Thoát             |");
 			int n = s.nextInt();
-
-			if (n == 1) {
+			switch (n) {
+			case 1: {
 				createRoom(s, roomManager);
-			} else if (n == 2) {
-				roomManager.displayRooms();
-			} else if (n == 5) {
-				System.out.println("Thoát chương trình.");
 				break;
+			}
+			case 2: {
+				roomManager.displayRooms();
+				break;
+			}
+			case 3: {
+				break;
+			}
+			case 4: {
+				break;
+			}
+			case 5: {
+				break;
+			}
+			case 6: {
+				break;
+			}
+			case 7: {
+				System.out.println("Thoát chương trình.");
+				s.close();
+				return;
+			}
+			default:
+				System.out.println("Chức năng không hợp lệ. Vui lòng chọn lại.");
 			}
 		}
 	}
