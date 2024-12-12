@@ -23,6 +23,10 @@ public class RoomManager {
 		loadBookings();
 	}
 
+	public List<Room> getRooms() {
+		return rooms;
+	}
+
 	public void createRoom(String name, String type, int capacity, double price, String status, int floor) {
 		Room room = new Room(name, type, capacity, price, status, floor);
 		rooms.add(room);
@@ -65,90 +69,85 @@ public class RoomManager {
 	}
 
 	public void addBooking(Booking booking) {
-        bookings.add(booking);
-        saveBookings();
-    }
+		bookings.add(booking);
+		saveBookings();
+	}
 
-    public void removeBooking(Booking booking) {
-        bookings.remove(booking);
-        saveBookings();
-    }
+	public void removeBooking(Booking booking) {
+		bookings.remove(booking);
+		saveBookings();
+	}
 
-    // Lấy danh sách bookings cho một phòng cụ thể
-    public List<Booking> getBookingsForRoom(Room room) {
-        return bookings.stream()
-            .filter(b -> b.getRoom().equals(room))
-            .collect(Collectors.toList());
-    }
+	// Lấy danh sách bookings cho một phòng cụ thể
+	public List<Booking> getBookingsForRoom(Room room) {
+		return bookings.stream().filter(b -> b.getRoom().equals(room)).collect(Collectors.toList());
+	}
 
-    // Lấy tất cả các booking
-    public List<Booking> getBookings() {
-        return new ArrayList<>(bookings);
-    }
+	// Lấy tất cả các booking
+	public List<Booking> getBookings() {
+		return new ArrayList<>(bookings);
+	}
 
-    // Lưu booking vào file
-    private void saveBookings() {
-        try (FileWriter fw = new FileWriter("src\\PhongHop\\bookings", false);
-             BufferedWriter bw = new BufferedWriter(fw)) {
-            for (Booking booking : bookings) {
-                bw.write(bookingToCSV(booking));
-                bw.newLine();
-            }
-            bw.flush();
-        } catch (IOException e) {
-            System.out.println("Lỗi khi lưu booking: " + e.getMessage());
-        }
-    }
+	// Lưu booking vào file
+	private void saveBookings() {
 
-    // Tải booking từ file
-    private void loadBookings() {
-        try (FileReader fr = new FileReader("src\\PhongHop\\bookings");
-             BufferedReader br = new BufferedReader(fr)) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                Booking booking = bookingFromCSV(line);
-                if (booking != null) {
-                    bookings.add(booking);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File booking không tồn tại, tạo file mới.");
-        } catch (IOException e) {
-            System.out.println("Lỗi khi tải booking: " + e.getMessage());
-        }
-    }
+		try (FileWriter fw = new FileWriter("src\\PhongHop\\bookings", false);
+				BufferedWriter bw = new BufferedWriter(fw)) {
+			for (Booking booking : bookings) {
+				bw.write(bookingToCSV(booking));
+				bw.newLine();
+			}
+			bw.flush();
+		} catch (IOException e) {
+			System.out.println("Lỗi khi lưu booking: " + e.getMessage());
+		}
+	}
 
-    // Chuyển booking sang chuỗi CSV
-    private String bookingToCSV(Booking booking) {
-        return String.join(",", 
-            booking.getBooking_id(),
-            booking.getRoom().getName(),
-            booking.getStart_time().toString(),
-            booking.getEnd_time().toString(),
-            String.valueOf(booking.getAttendees()),
-            booking.getManager()
-        );
-    }
+	// Tải booking từ file
+	private void loadBookings() {
+		try (FileReader fr = new FileReader("src\\PhongHop\\bookings"); BufferedReader br = new BufferedReader(fr)) {
+			String line;
+			while ((line = br.readLine()) != null) {
+				Booking booking = bookingFromCSV(line);
+				if (booking != null) {
+					bookings.add(booking);
+				}
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("File booking không tồn tại, tạo file mới.");
+		} catch (IOException e) {
+			System.out.println("Lỗi khi tải booking: " + e.getMessage());
+		}
+	}
 
-    // Chuyển chuỗi CSV sang booking
-    private Booking bookingFromCSV(String csv) {
-        String[] parts = csv.split(",");
-        if (parts.length != 6) return null;
+	// Chuyển booking sang chuỗi CSV
+	private String bookingToCSV(Booking booking) {
+		return String.join(",", booking.getBooking_id(), booking.getRoom().getName(),
+				booking.getStart_time().toString(), booking.getEnd_time().toString(),
+				String.valueOf(booking.getAttendees()), booking.getManager());
+	}
 
-        // Tìm phòng tương ứng
-        Room room = rooms.stream()
-            .filter(r -> r.getName().equals(parts[1]))
-            .findFirst()
-            .orElse(null);
+	// Chuyển chuỗi CSV sang booking
+	private Booking bookingFromCSV(String csv) {
+		String[] parts = csv.split(",");
+		if (parts.length != 6) {
+			System.out.println("Dữ liệu không hợp lệ: " + csv);
+			return null;
+		}
 
-        if (room == null) return null;
+		// Tìm phòng tương ứng
+		Room room = rooms.stream().filter(r -> r.getName().equals(parts[1])).findFirst().orElse(null);
 
-        return new Booking(
-            room,
-            LocalDateTime.parse(parts[2]),
-            LocalDateTime.parse(parts[3]),
-            Integer.parseInt(parts[4]),
-            parts[5]
-        );
-    }
+		if (room == null) {
+			System.out.println("Không tìm thấy phòng có tên: " + parts[1]);
+			return null; // Trả về null nếu phòng không tồn tại
+		}
+
+		return new Booking(room, LocalDateTime.parse(parts[2]), LocalDateTime.parse(parts[3]),
+				Integer.parseInt(parts[4]), parts[5]);
+	}
+
+	public Booking getBooking(String bookingId) {
+		return bookings.stream().filter(b -> b.getBooking_id().equals(bookingId)).findFirst().orElse(null);
+	}
 }
