@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
 
-
 class MeetingRoom {
     private String name;
     private String type; // "Thường" hoặc "VIP"
