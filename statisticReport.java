@@ -38,3 +38,11 @@ public class ReportGenerator {
         return report;
     }
 }
+
+public class MeetingRoomManagement {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Thực hiện các chức năng như đặt phòng, báo cáo...
+        // Ví dụ: Nhập thông tin đặt phòng
+    }
+}
