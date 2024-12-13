@@ -3,7 +3,7 @@ package PhongHop;
 import java.util.ArrayList;
 
 public class service {
-	private int rentalDuration; // Thời gian thuê (giờ)
+	private double rentalDuration; // Thời gian thuê (giờ)
 	private double totalServiceCost = 0; // Tổng chi phí dịch vụ
 	private ArrayList<String> selectedServices = new ArrayList<>(); // Danh sách dịch vụ đã chọn
 
@@ -13,7 +13,7 @@ public class service {
 	private static final double WIFI_COST = 30.0;
 
 	// Constructor
-	public service(int rentalDuration) {
+	public service(double rentalDuration) {
 		this.rentalDuration = rentalDuration;
 	}
 
@@ -104,4 +104,9 @@ public class service {
 			System.out.println("Thời gian thuê không hợp lệ.");
 		}
 	}
+
+	public ArrayList<String> getSelectedServices() {
+		return selectedServices;
+	}
+
 }

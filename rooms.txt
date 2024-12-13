@@ -1,1 +1,6 @@
-PTT,VIP,24,12.0,Trống,3,Hệ thống âm thanh hội nghị,Màn hình LED lớn,Ánh sáng điều chỉnh
+1,T1,VIP,100,1000000.0,Trống,3,Hệ thống âm thanh hội nghị;Màn hình LED lớn;Ánh sáng điều chỉnh
+2,T1,Vip,100,40.0,Trống,Trệt,Hệ thống âm thanh hội nghị;Màn hình LED lớn;Ánh sáng điều chỉnh
+3,gennn,Vip,20,30.0,Đang sử dụng,1,Hệ thống âm thanh hội nghị;Màn hình LED lớn;Ánh sáng điều chỉnh
+4,TT1,Thường,30,20.0,Trống,1,Bảng trắng;Máy chiếu cơ bản;Wifi thông thường
+5,bate,Thường,30,40.0,Trống,2,Bảng trắng;Máy chiếu cơ bản;Wifi thông thường
+6,buaa,Vip,50,40.0,Trống,1,Hệ thống âm thanh hội nghị;Màn hình LED lớn;Ánh sáng điều chỉnh

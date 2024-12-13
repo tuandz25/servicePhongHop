@@ -1,5 +1,6 @@
 package PhongHop;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -21,6 +22,11 @@ public class Booking {
 		this.end_time = end_time;
 		this.attendees = attendees;
 		this.manager = manager;
+	}
+
+	public double getDuration() {
+		Duration duration = Duration.between(start_time, end_time);
+		return duration.toHours(); // Trả về số giờ
 	}
 
 	public String getBooking_id() {
@@ -139,24 +145,24 @@ public class Booking {
 		return true;
 	}
 
-	public void cancel_booking(RoomManager roomManager) {
-		roomManager.removeBooking(this);
-		System.out.println("Hủy đặt phòng thành công.");
-	}
-
 	public void displayBookingInfo() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-		System.out.println("ID Đặt phòng: " + booking_id);
+		String formatName = String.format("%-18s", room.getRoomID());
+		String formatStartTime = String.format("%-22s", start_time.format(formatter));
+		String formatEndTime = String.format("%-22s", end_time.format(formatter));
+		String formatAttendees = String.format("%-10s", attendees);
+		String formatManager = String.format("%-15s", manager);
+		System.out.print("||" + booking_id);
 
 		if (room == null) {
 			System.out.println("Phòng: Không xác định (Room is null)");
 		} else {
-			System.out.println("Phòng: " + room.getRoomID());
+			System.out.print("|" + formatName);
 		}
 
-		System.out.println("Thời gian bắt đầu: " + start_time.format(formatter));
-		System.out.println("Thời gian kết thúc: " + end_time.format(formatter));
-		System.out.println("Số người tham dự: " + attendees);
-		System.out.println("Người quản lý: " + manager);
+		System.out.println("|" + formatStartTime + "|" + formatEndTime + "|        " + formatAttendees + "|"
+				+ formatManager + "||");
+		System.out.print(
+				"||------------------------------------|------------------|----------------------|----------------------|------------------|---------------||");
 	}
 }

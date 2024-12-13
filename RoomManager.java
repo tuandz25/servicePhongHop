@@ -9,12 +9,22 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class RoomManager {
-	private static final String FILE_NAME = "src\\PhongHop\\rooms";
 	private List<Room> rooms;
 	private List<Booking> bookings;
+
+	public void createRoom(Scanner s) {
+		Room room = new Room();
+		room.setInfo();
+		room.setID(rooms.size() + 1);
+		rooms.add(room);
+		saveRooms();
+		System.out.println("Đã tạo thành công 1 phòng.");
+
+	}
 
 	public RoomManager() {
 		this.rooms = new ArrayList<>();
@@ -27,12 +37,6 @@ public class RoomManager {
 		return rooms;
 	}
 
-	public void createRoom(String name, String type, int capacity, double price, String status, int floor) {
-		Room room = new Room(name, type, capacity, price, status, floor);
-		rooms.add(room);
-		saveRooms(); // Lưu toàn bộ danh sách phòng
-	}
-
 	public void displayRooms() {
 		for (Room room : rooms) {
 			room.displayInfo();
@@ -40,7 +44,7 @@ public class RoomManager {
 	}
 
 	private void saveRooms() {
-		try (FileWriter fw = new FileWriter(FILE_NAME, false); // Ghi đè file
+		try (FileWriter fw = new FileWriter("src//PhongHop//rooms.txt", false); // Ghi đè file
 				BufferedWriter bw = new BufferedWriter(fw)) {
 			for (Room room : rooms) {
 				bw.write(room.toCSV());
@@ -53,14 +57,14 @@ public class RoomManager {
 	}
 
 	private void loadRooms() {
-		try (FileReader fr = new FileReader(FILE_NAME); BufferedReader br = new BufferedReader(fr)) {
+		try (FileReader fr = new FileReader("src//PhongHop//rooms.txt"); BufferedReader br = new BufferedReader(fr)) {
 			String line;
 			while ((line = br.readLine()) != null) {
 				Room room = Room.fromCSV(line);
 				rooms.add(room);
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println("File không tồn tại, tạo file mới: " + FILE_NAME);
+			System.out.println("File không tồn tại, tạo file mới: " + "src//PhongHop//rooms.txt");
 		} catch (IOException e) {
 			System.out.println("Lỗi khi tải phòng: " + e.getMessage());
 		}
@@ -107,7 +111,7 @@ public class RoomManager {
 
 	// Lưu booking vào file
 	private void saveBookings() {
-		try (FileWriter fw = new FileWriter("src\\PhongHop\\bookings", false);
+		try (FileWriter fw = new FileWriter("src//PhongHop//bookings.txt", false);
 				BufferedWriter bw = new BufferedWriter(fw)) {
 			for (Booking booking : bookings) {
 				bw.write(bookingToCSV(booking));
@@ -121,7 +125,8 @@ public class RoomManager {
 
 	// Tải booking từ file
 	private void loadBookings() {
-		try (FileReader fr = new FileReader("src\\PhongHop\\bookings"); BufferedReader br = new BufferedReader(fr)) {
+		try (FileReader fr = new FileReader("src//PhongHop//bookings.txt");
+				BufferedReader br = new BufferedReader(fr)) {
 			String line;
 			while ((line = br.readLine()) != null) {
 				Booking booking = bookingFromCSV(line);
@@ -163,7 +168,4 @@ public class RoomManager {
 				Integer.parseInt(parts[4]), parts[5]);
 	}
 
-	public Booking getBooking(String bookingId) {
-		return bookings.stream().filter(b -> b.getBooking_id().equals(bookingId)).findFirst().orElse(null);
-	}
 }

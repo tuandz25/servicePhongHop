@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
+
 	public static void main(String[] argv) {
 		Scanner s = new Scanner(System.in);
 		RoomManager roomManager = new RoomManager();
@@ -20,6 +21,8 @@ public class Main {
 			System.out.println("||    /1.Quản lý phòng /                 /  2.Thuê phòng  /  ||");
 			System.out.println("||   /   họp(admin)   /                 /       họp      /   ||");
 			System.out.println("||  /________________/                 /________________/    ||");
+			System.out.println("||                                                           ||");
+			System.out.println("||              >>NHẤN SỐ BẤT KỲ KHÁC ĐỂ THOÁT<<             ||");
 			System.out.println("||                                                           ||");
 			System.out.println(" +===========================================================+");
 			System.out.print("Lựa chọn của bạn là:");
@@ -53,19 +56,19 @@ public class Main {
 					int n = s.nextInt();
 					switch (n) {
 					case 1: {
-						createRoom(s, roomManager);
+						roomManager.createRoom(s);
 						break;
 					}
 					case 2: {
 						System.out.println(
-								" +===========================================================================================================================================================+");
+								" +=============================================================================================================================================+");
 						System.out.println(
-								"||  ID phòng   |  Loại  |  Sức chứa  |  Giá thuê theo giờ  |  Trạng Thái  |  Tầng  |                                    Tiện ích                             ||");
+								"||ID phòng|   Tên phòng    | Loại |Sức chứa|Giá thuê theo giờ| Trạng Thái |Tầng|                             Tiện ích                          ||");
 						System.out.println(
-								" +===========================================================================================================================================================||");
+								"||========|================|======|========|=================|============|====|===============================================================||");
 						roomManager.displayRooms();
 						System.out.println(
-								" +===========================================================================================================================================================+");
+								" +=============================================================================================================================================+");
 						break;
 					}
 					case 3: {
@@ -92,9 +95,7 @@ public class Main {
 					System.out.println("||                                                           ||");
 					System.out.println("||  [1.Hiển thị phòng----]           [2.Xem lịch đặt phòng]  ||");
 					System.out.println("||                                                           ||");
-					System.out.println("||  [3.Đặt phòng---------]           [4.Sửa đặt phòng-----]  ||");
-					System.out.println("||                                                           ||");
-					System.out.println("||  [5.Hủy đặt phòng-----]           [6.Thoát-------------]  ||");
+					System.out.println("||  [3.Đặt phòng---------]           [4.Thoát-------------]  ||");
 					System.out.println("||                                                           ||");
 					System.out.println(" +===========================================================+");
 					System.out.print("Lựa chọn của bạn là:");
@@ -102,22 +103,27 @@ public class Main {
 					switch (n) {
 					case 1: {
 						System.out.println(
-								" +===========================================================================================================================================================+");
+								" +=============================================================================================================================================+");
 						System.out.println(
-								"||  ID phòng   |  Loại  |  Sức chứa  |  Giá thuê theo giờ  |  Trạng Thái  |  Tầng  |                                    Tiện ích                             ||");
+								"||ID phòng|   Tên phòng    | Loại |Sức chứa|Giá thuê theo giờ| Trạng Thái |Tầng|                             Tiện ích                          ||");
 						System.out.println(
-								"||=============|========|============|=====================|==============|========|=========================================================================||");
+								"||========|================|======|========|=================|============|====|===============================================================||");
 						roomManager.displayRooms();
 						System.out.println(
-								" +===========================================================================================================================================================+");
+								" +=============================================================================================================================================+");
 						break;
 					}
 					case 2: {
+						System.out.println("Danh sách đặt phòng:");
 						System.out.println(
-								" +=======================================================================================================+");
+								" +========================================================================================================================================+");
+						System.out.println(
+								"||           ID Đặt phòng             |     Tên phòng    |   Thời gian bắt đầu  |  Thời gian kết thúc  | Số người tham dự | Người quản lý ||");
+						System.out.println(
+								"||====================================|==================|======================|======================|==================|===============||");
 						displayBookings(roomManager);
 						System.out.println(
-								" +=======================================================================================================+");
+								" +========================================================================================================================================+");
 						break;
 					}
 					case 3: {
@@ -125,15 +131,8 @@ public class Main {
 						break;
 					}
 					case 4: {
-						updateBooking(s, roomManager);
-						break;
-					}
-					case 5: {
-						cancelBooking(s, roomManager);
-						break;
-					}
-					case 6: {
 						System.out.println("Bạn đã thoát chế độ người dùng.");
+						System.out.println("CHÚC QUÝ KHÁCH NGÀY MỚI VUI VẺ(^~^)<3<3");
 						result = false;
 						break;
 					}
@@ -142,30 +141,11 @@ public class Main {
 						break;
 					}
 				}
-
 			}
 			default:
-				break;
+				return;
 			}
 		}
-	}
-
-	private static void createRoom(Scanner s, RoomManager roomManager) {
-		System.out.print("Nhập tên phòng: ");
-		String name = s.next();
-		System.out.print("Nhập loại phòng: ");
-		String type = s.next();
-		System.out.print("Nhập sức chứa : ");
-		int capacity = s.nextInt();
-		System.out.print("Nhập giá phòng theo giờ: ");
-		double price = s.nextDouble();
-		System.out.print("Nhập trạng thái phòng: ");
-		String status = s.next();
-		System.out.print("Nhập số tầng của phòng: ");
-		int floor = s.nextInt();
-		roomManager.createRoom(name, type, capacity, price, status, floor);
-		System.out.println("Đã tạo thành công 1 phòng.");
-
 	}
 
 	private static void createBooking(Scanner s, RoomManager roomManager) {
@@ -199,62 +179,7 @@ public class Main {
 		}
 	}
 
-	private static void updateBooking(Scanner s, RoomManager roomManager) {
-		try {
-			System.out.println("Nhập ID đặt phòng: ");
-			String bookingId = s.next();
-
-			// Tìm booking tương ứng
-			Booking booking = roomManager.getBooking(bookingId);
-			if (booking == null) {
-				System.out.println("Không tìm thấy đặt phòng với ID: " + bookingId);
-				return;
-			}
-
-			System.out.println("Nhập thời gian bắt đầu mới (dd/MM/yyyy HH:mm): ");
-			String startTimeStr = s.nextLine();
-			LocalDateTime newStartTime = LocalDateTime.parse(startTimeStr,
-					DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-
-			System.out.println("Nhập thời gian kết thúc mới (dd/MM/yyyy HH:mm): ");
-			String endTimeStr = s.nextLine();
-			LocalDateTime newEndTime = LocalDateTime.parse(endTimeStr, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-
-			System.out.println("Nhập số lượng người tham dự mới: ");
-			int newAttendees = s.nextInt();
-			s.nextLine(); // Consume newline
-
-			if (booking.update_booking(roomManager, newStartTime, newEndTime, newAttendees)) {
-				System.out.println("Cập nhật đặt phòng thành công.");
-			} else {
-				System.out.println("Cập nhật đặt phòng thất bại.");
-			}
-		} catch (Exception e) {
-			System.out.println("Đã xảy ra lỗi: " + e.getMessage());
-		}
-	}
-
-	private static void cancelBooking(Scanner s, RoomManager roomManager) {
-		try {
-			System.out.println("Nhập ID đặt phòng: ");
-			String bookingId = s.nextLine();
-
-			// Tìm booking tương ứng
-			Booking booking = roomManager.getBooking(bookingId);
-			if (booking == null) {
-				System.out.println("Không tìm thấy đặt phòng với ID: " + bookingId);
-				return;
-			}
-
-			booking.cancel_booking(roomManager);
-			System.out.println("Hủy đặt phòng thành công.");
-		} catch (Exception e) {
-			System.out.println("Đã xảy ra lỗi: " + e.getMessage());
-		}
-	}
-
 	private static void displayBookings(RoomManager roomManager) {
-		System.out.println("Danh sách đặt phòng:");
 		for (Booking booking : roomManager.getBookings()) {
 			booking.displayBookingInfo();
 			System.out.println();
