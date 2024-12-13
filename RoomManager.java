@@ -35,9 +35,7 @@ public class RoomManager {
 
 	public void displayRooms() {
 		for (Room room : rooms) {
-			System.out.println("--------------------------");
 			room.displayInfo();
-			System.out.println("--------------------------");
 		}
 	}
 
@@ -78,6 +76,25 @@ public class RoomManager {
 		saveBookings();
 	}
 
+	public Room findAvailableRoom(int attendees, LocalDateTime startTime, LocalDateTime endTime) {
+		for (Room room : rooms) {
+			if (room.getCapacity() >= attendees && isRoomAvailable(room, startTime, endTime)) {
+				return room;
+			}
+		}
+		return null;
+	}
+
+	public boolean isRoomAvailable(Room room, LocalDateTime startTime, LocalDateTime endTime) {
+		for (Booking booking : bookings) {
+			if (booking.getRoom().equals(room)
+					&& !(endTime.isBefore(booking.getStart_time()) || startTime.isAfter(booking.getEnd_time()))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	// Lấy danh sách bookings cho một phòng cụ thể
 	public List<Booking> getBookingsForRoom(Room room) {
 		return bookings.stream().filter(b -> b.getRoom().equals(room)).collect(Collectors.toList());
@@ -90,7 +107,6 @@ public class RoomManager {
 
 	// Lưu booking vào file
 	private void saveBookings() {
-
 		try (FileWriter fw = new FileWriter("src\\PhongHop\\bookings", false);
 				BufferedWriter bw = new BufferedWriter(fw)) {
 			for (Booking booking : bookings) {
@@ -122,7 +138,7 @@ public class RoomManager {
 
 	// Chuyển booking sang chuỗi CSV
 	private String bookingToCSV(Booking booking) {
-		return String.join(",", booking.getBooking_id(), booking.getRoom().getName(),
+		return String.join(",", booking.getBooking_id(), booking.getRoom().getRoomID(),
 				booking.getStart_time().toString(), booking.getEnd_time().toString(),
 				String.valueOf(booking.getAttendees()), booking.getManager());
 	}
@@ -136,7 +152,7 @@ public class RoomManager {
 		}
 
 		// Tìm phòng tương ứng
-		Room room = rooms.stream().filter(r -> r.getName().equals(parts[1])).findFirst().orElse(null);
+		Room room = rooms.stream().filter(r -> r.getRoomID().equals(parts[1])).findFirst().orElse(null);
 
 		if (room == null) {
 			System.out.println("Không tìm thấy phòng có tên: " + parts[1]);

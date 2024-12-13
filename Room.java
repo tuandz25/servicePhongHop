@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
-	private String name;
+	private String roomID;
 	private String type;
 	private int capacity;
 	private double price;
@@ -13,8 +13,8 @@ public class Room {
 	private List<String> utility;
 
 	// constructor
-	public Room(String name, String type, int capacity, double price, String status, int floor) {
-		this.name = name;
+	public Room(String roomID, String type, int capacity, double price, String status, int floor) {
+		this.roomID = roomID;
 		this.type = type;
 		this.capacity = capacity;
 		this.price = price;
@@ -39,12 +39,12 @@ public class Room {
 	}
 
 	// getter and setter
-	public String getName() {
-		return name;
+	public String getRoomID() {
+		return roomID;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRoomID(String name) {
+		this.roomID = name;
 	}
 
 	public String getType() {
@@ -96,17 +96,23 @@ public class Room {
 	}
 
 	public void displayInfo() {
-		System.out.println("Tên phòng: " + name);
-		System.out.println("Loại phòng: " + type);
-		System.out.println("Sức chứa: " + capacity);
-		System.out.println("Giá thuê theo giờ: " + price);
-		System.out.println("Trạng thái: " + status);
-		System.out.println("Tầng: " + floor);
-		System.out.println("Tiện ích: " + String.join(", ", utility));
+		String formatName = String.format("%-7s", roomID);
+		String formatType = String.format("%-6s", type);
+		String formatCapacity = String.format("%-7s", capacity);
+		String formatPrice = String.format("%-13s", price);
+		String formatStatus = String.format("%-10s", status);
+		String formatFloor = String.format("%-5s", floor);
+		String formatUtility = String.format("%-71s", String.join(",", utility));
+		System.out.println("||      " + formatName + "|  " + formatType + "|     " + formatCapacity + "|        "
+				+ formatPrice + "|    " + formatStatus + "|   " + formatFloor + "|  " + formatUtility + "||");
+
+		System.out.println(
+				"||-----------------------------------------------------------------------------------------------------------------------------------------------------------||");
+
 	}
 
 	public String toCSV() {
-		return name + "," + type + "," + capacity + "," + price + "," + status + "," + floor + ","
+		return roomID + "," + type + "," + capacity + "," + price + "," + status + "," + floor + ","
 				+ String.join(";", utility);
 	}
 
