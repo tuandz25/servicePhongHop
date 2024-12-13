@@ -14,12 +14,12 @@ public class Main {
 			result = true;
 			System.out.println(" +===========================================================+");
 			System.out.println("||                                                           ||");
-			System.out.println("||                Chào mừng quý khách đến với...             ||");
-			System.out.println("||                                                           ||");
-			System.out.println("||     _________________                  _________________  ||");
-			System.out.println("||    /1.Quản lý phòng /                 /  2.Thuê phòng  /  ||");
-			System.out.println("||   /   họp(admin)   /                 /       họp      /   ||");
-			System.out.println("||  /________________/                 /________________/    ||");
+			System.out.println("||               	   Xin chào người dùng	                 ||");
+			System.out.println("||                    Vui lòng chọn chức năng                ||");
+			System.out.println("||   ╔==================╗            ╔==================╗  	 ||");
+			System.out.println("||   ∥  1.Quản lý phòng ∥            ∥  2.Thuê phòng     ∥   ||");
+			System.out.println("||   ∥     họp(admin)   ∥            ∥      họp          ∥   ||");
+			System.out.println("||   ╚==================╝            ╚==================╝    ||");
 			System.out.println("||                                                           ||");
 			System.out.println(" +===========================================================+");
 			System.out.print("Lựa chọn của bạn là:");
