@@ -29,8 +29,12 @@ public class RoomManager {
 	public RoomManager() {
 		this.rooms = new ArrayList<>();
 		this.bookings = new ArrayList<>();
+        this.services = new ArrayList<>();
 		loadRooms();
 		loadBookings();
+
+		// Bắt đầu cập nhật trạng thái phòng
+		startPeriodicStatusUpdate();
 	}
 
 	public List<Room> getRooms() {
