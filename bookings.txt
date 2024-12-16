@@ -1,0 +1,2 @@
+ae499022-f38c-4389-a4d6-e9b4c7ca3b1d,gennn,2024-12-17T00:00,2024-12-18T23:59:59,20,Thai,Trà và Cà phê;Hỗ trợ kỹ thuật;Wifi tốc độ cao
+c6f05d3d-b08b-4a65-8170-750cba058e1e,TT1,2024-12-17T00:00,2024-12-18T23:59:59,30,Thai,Trà và Cà phê;Hỗ trợ kỹ thuật

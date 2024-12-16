@@ -1,4 +1,3 @@
-package PhongHop;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,8 +95,8 @@ public class Room {
 		this.utility = utility;
 	}
 
-	public double getRentalPrice() {
-		return price; // Trả về giá thuê theo giờ
+	public double getDailyRentalPrice() {
+		return price; // Trả về giá thuê theo ngày
 	}
 
 	public void displayInfo() {
@@ -119,9 +118,9 @@ public class Room {
 	}
 
 	public String toCSV() {
-		return ID + "," + roomID + "," + type + "," + capacity + "," + price + "," + status + "," + floor + ","
-				+ String.join(";", utility);
-	}
+        return ID + "," + roomID + "," + type + "," + capacity + "," + price + "," + status + "," + floor + ","
+                + String.join(";", utility);
+    }
 
 	public static Room fromCSV(String csv) {
 		String[] parts = csv.split(",");
@@ -153,22 +152,22 @@ public class Room {
 			try {
 				int choose = Integer.parseInt(scan.nextLine());
 				switch (choose) {
-				case 1:
-					type = "Thường";
-					utility.add("Bảng trắng");
-					utility.add("Máy chiếu cơ bản");
-					utility.add("Wifi thông thường");
-					break;
-				case 2:
-					type = "Vip";
-					utility.clear();
-					utility.add("Hệ thống âm thanh hội nghị");
-					utility.add("Màn hình LED lớn");
-					utility.add("Ánh sáng điều chỉnh");
-					break;
-				default:
-					System.out.println("Lựa chọn không phù hợp, đầu vào bắt buộc là '1' hoặc '2'");
-					continue;
+					case 1:
+						type = "Thường";
+						utility.add("Bảng trắng");
+						utility.add("Máy chiếu cơ bản");
+						utility.add("Wifi thông thường");
+						break;
+					case 2:
+						type = "Vip";
+						utility.clear();
+						utility.add("Hệ thống âm thanh hội nghị");
+						utility.add("Màn hình LED lớn");
+						utility.add("Ánh sáng điều chỉnh");
+						break;
+					default:
+						System.out.println("Lựa chọn không phù hợp, đầu vào bắt buộc là '1' hoặc '2'");
+						continue;
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Đầu vào bắt buộc là số, vui lòng nhập lại!");
@@ -210,18 +209,18 @@ public class Room {
 			try {
 				int choose = Integer.parseInt(scan.nextLine());
 				switch (choose) {
-				case 1:
-					this.status = "Trống";
-					break;
-				case 2:
-					this.status = "Đã đặt";
-					break;
-				case 3:
-					this.status = "Đang sử dụng";
-					break;
-				default:
-					System.out.println("Lựa chọn không phù hợp, đầu vào bắt buộc là '1' hoặc '2' hoặc '3'");
-					continue;
+					case 1:
+						this.status = "Trống";
+						break;
+					case 2:
+						this.status = "Đã đặt";
+						break;
+					case 3:
+						this.status = "Đang sử dụng";
+						break;
+					default:
+						System.out.println("Lựa chọn không phù hợp, đầu vào bắt buộc là '1' hoặc '2' hoặc '3'");
+						continue;
 				}
 
 			} catch (NumberFormatException e) {
@@ -240,18 +239,18 @@ public class Room {
 			try {
 				int choose = Integer.parseInt(scan.nextLine());
 				switch (choose) {
-				case 1:
-					this.floor = "Trệt";
-					break;
-				case 2:
-					this.floor = "1";
-					break;
-				case 3:
-					this.floor = "2";
-					break;
-				default:
-					System.out.println("Lựa chọn không phù hợp, đầu vào bắt buộc là '1' hoặc '2' hoặc '3'");
-					continue;
+					case 1:
+						this.floor = "Trệt";
+						break;
+					case 2:
+						this.floor = "1";
+						break;
+					case 3:
+						this.floor = "2";
+						break;
+					default:
+						System.out.println("Lựa chọn không phù hợp, đầu vào bắt buộc là '1' hoặc '2' hoặc '3'");
+						continue;
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Dữ liệu không hợp lệ, vui lòng nhập số!");
