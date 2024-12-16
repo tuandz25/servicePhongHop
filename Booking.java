@@ -1,3 +1,5 @@
+package servicePhongHop1;
+
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -263,7 +265,12 @@ public class Booking {
 			switch (n) {
 				case 1, 2, 3 -> {
 					String serviceName = serviceMap.get(n);
-					new_service.addService(serviceName);
+                                        if (!new_service.getSelectedServices().contains(serviceName)) { 
+                                                  new_service.addService(serviceName);
+                                                 System.out.println("Dịch vụ " + serviceName + " đã được thêm.");
+                                            } else {
+                                              System.out.println("Bạn đã chọn dịch vụ " + serviceName + " rồi.");
+                                                   }
 				}
 				case 4 -> {
 					if (new_service.getSelectedServices().isEmpty()) {

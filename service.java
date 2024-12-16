@@ -1,3 +1,5 @@
+package servicePhongHop1;
+
 
 
 import java.util.ArrayList;
@@ -18,22 +20,15 @@ public class service {
     }
 
     // Thêm dịch vụ
-    public void addService(String serviceName) {
-        if (!selectedServices.contains(serviceName)) {
+    public void addService(String serviceName) {     
             selectedServices.add(serviceName);
-
             // Cập nhật tổng chi phí
             if (serviceName.equals("Trà và Cà phê"))
                 totalServiceCost += COFFEE_SERVICE_COST * rentalDuration;
             else if (serviceName.equals("Hỗ trợ kỹ thuật"))
                 totalServiceCost += TECH_SUPPORT_COST * rentalDuration;
             else if (serviceName.equals("Wifi tốc độ cao"))
-                totalServiceCost += WIFI_COST * rentalDuration;
-
-            System.out.println("Dịch vụ " + serviceName + " đã được thêm.");
-        } else {
-            System.out.println("Bạn đã chọn dịch vụ " + serviceName + " rồi.");
-        }
+                totalServiceCost += WIFI_COST * rentalDuration;         
     }
 
     // Xóa dịch vụ

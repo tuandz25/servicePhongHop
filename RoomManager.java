@@ -1,3 +1,5 @@
+package servicePhongHop1;
+
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -48,7 +50,7 @@ public class RoomManager {
 	}
 
 	private void saveRooms() {
-		try (FileWriter fw = new FileWriter("rooms.txt", false); // Ghi đè file
+		try (FileWriter fw = new FileWriter("src//servicePhongHop1//rooms.txt", false); // Ghi đè file
 				BufferedWriter bw = new BufferedWriter(fw)) {
 			for (Room room : rooms) {
 				bw.write(room.toCSV());
@@ -61,7 +63,7 @@ public class RoomManager {
 	}
 
 	private void loadRooms() {
-		try (FileReader fr = new FileReader("rooms.txt");
+		try (FileReader fr = new FileReader("src//servicePhongHop1//rooms.txt");
 				BufferedReader br = new BufferedReader(fr)) {
 			String line;
 			while ((line = br.readLine()) != null) {
@@ -116,7 +118,7 @@ public class RoomManager {
 
 	// Lưu booking vào file
 	private void saveBookings() {
-		try (FileWriter fw = new FileWriter("bookings.txt", false);
+		try (FileWriter fw = new FileWriter("src//servicePhongHop1//bookings.txt", false);
 				BufferedWriter bw = new BufferedWriter(fw)) {
 			for (Booking booking : bookings) {
 				bw.write(bookingToCSV(booking));
@@ -130,7 +132,7 @@ public class RoomManager {
 
 	// Tải booking từ file
 	private void loadBookings() {
-		try (FileReader fr = new FileReader("bookings.txt");
+		try (FileReader fr = new FileReader("src//servicePhongHop1//bookings.txt");
 				BufferedReader br = new BufferedReader(fr)) {
 			String line;
 			while ((line = br.readLine()) != null) {

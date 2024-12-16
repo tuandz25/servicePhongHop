@@ -1,2 +1,5 @@
-ae499022-f38c-4389-a4d6-e9b4c7ca3b1d,gennn,2024-12-17T00:00,2024-12-18T23:59:59,20,Thai,Trà và Cà phê;Hỗ trợ kỹ thuật;Wifi tốc độ cao
-c6f05d3d-b08b-4a65-8170-750cba058e1e,TT1,2024-12-17T00:00,2024-12-18T23:59:59,30,Thai,Trà và Cà phê;Hỗ trợ kỹ thuật
+9bf71ced-8bf6-4873-b246-e96c78061eca,gennn,2024-12-17T00:00,2024-12-18T23:59:59,20,Thai,Trà và Cà phê;Hỗ trợ kỹ thuật;Wifi tốc độ cao
+6fc175bf-7b57-4912-addd-5448248c22df,TT1,2024-12-17T00:00,2024-12-18T23:59:59,30,Thai,Trà và Cà phê;Hỗ trợ kỹ thuật
+7d967846-4f3f-4876-a30c-1e0cfb348282,TT1,2099-12-12T00:00,2100-12-13T23:59:59,30,thong,Trà và Cà phê;Hỗ trợ kỹ thuật
+0099d8f7-86f5-4612-90a7-98cd6e64391d,T1,2500-12-12T00:00,2600-12-12T23:59:59,90,hihi,Trà và Cà phê;Hỗ trợ kỹ thuật;Wifi tốc độ cao
+64f727a9-aa54-4798-9849-226228cb8941,T1,2500-12-12T00:00,2600-12-12T23:59:59,90,hihi,Trà và Cà phê;Hỗ trợ kỹ thuật;Wifi tốc độ cao
